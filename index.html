@@ -1,12 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Father's Day</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Father's Day 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0f0c09 0%, #1a1208 50%, #0d0a06 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: Georgia, serif;
+    position: relative; overflow: hidden; padding: 24px;
+  }
+  .ember {
+    position: fixed; border-radius: 50%;
+    background: radial-gradient(circle, #FBBF24, #F97316);
+    animation: rise linear infinite;
+    opacity: 0; pointer-events: none;
+  }
+  @keyframes rise {
+    0% { transform: translateY(100vh) scale(1); opacity: 0.8; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) scale(0.3); opacity: 0; }
+  }
+  @keyframes flicker {
+    0%,100% { opacity:1; text-shadow: 0 0 40px #F97316, 0 0 80px #EF4444; }
+    50% { opacity:0.92; text-shadow: 0 0 60px #FBBF24, 0 0 100px #F97316; }
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.3), inset 0 1px 0 rgba(251,191,36,0.15); }
+    50% { box-shadow: 0 0 30px 4px rgba(249,115,22,0.15), inset 0 1px 0 rgba(251,191,36,0.15); }
+  }
+  @keyframes burst {
+    0% { transform: translate(-50%,-50%) rotate(var(--a)) translateX(0) scale(1); opacity:1; }
+    100% { transform: translate(-50%,-50%) rotate(var(--a)) translateX(130px) scale(0); opacity:0; }
+  }
+  .card {
+    max-width: 520px; width: 100%;
+    background: linear-gradient(135deg, rgba(30,18,8,0.97), rgba(20,12,4,0.97));
+    border: 1px solid rgba(249,115,22,0.35);
+    border-radius: 4px; padding: 48px 40px;
+    position: relative; z-index: 10;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .rule { display:flex; align-items:center; gap:12px; margin-bottom:32px; }
+  .rule-line-l { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,0.6)); }
+  .rule-line-r { flex:1; height:1px; background:linear-gradient(90deg,rgba(249,115,22,0.6),transparent); }
+  .date {
+    font-family: Impact, Arial Black, sans-serif;
+    font-size: clamp(13px,3vw,15px); letter-spacing:0.35em;
+    color:#F97316; text-transform:uppercase; text-align:center; margin-bottom:6px;
+  }
+  h1 {
+    font-family: Impact, Arial Black, sans-serif;
+    font-size: clamp(42px,10vw,68px); font-weight:900;
+    line-height:1; letter-spacing:0.02em; text-align:center; margin:0;
+  }
+  h1.gold { color:#FBBF24; animation: flicker 4s ease-in-out infinite; }
+  h1.white { color:#FFF7ED; }
+  .divider {
+    width:60px; height:3px;
+    background:linear-gradient(90deg,#F97316,#FBBF24);
+    margin:24px auto; border-radius:2px;
+  }
+  .msg-box {
+    background:rgba(249,115,22,0.06);
+    border:1px solid rgba(249,115,22,0.2);
+    border-radius:2px; padding:20px 24px;
+    min-height:90px; display:flex; align-items:center; justify-content:center;
+  }
+  .msg-box p {
+    color:#FEF3C7; font-size:clamp(14px,3.5vw,17px);
+    line-height:1.65; text-align:center; font-style:italic;
+  }
+  .nav { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn {
+    background:transparent; border:1px solid rgba(249,115,22,0.4);
+    color:#F97316; width:36px; height:36px; border-radius:2px;
+    cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { filter:brightness(1.3); }
+  .nav-count { color:rgba(254,243,199,0.4); font-size:12px; letter-spacing:0.1em; }
+  .actions { display:flex; gap:12px; margin-top:28px; }
+  .btn {
+    flex:1; padding:14px 0; border-radius:2px; cursor:pointer;
+    font-family: Impact, Arial Black, sans-serif;
+    letter-spacing:0.15em; font-size:13px;
+    transition: all 0.15s;
+  }
+  .btn:hover { filter:brightness(1.15); transform:translateY(-1px); }
+  .btn-copy {
+    background:linear-gradient(135deg,#1a1208,#0d0a06);
+    border:1px solid rgba(249,115,22,0.5); color:#FBBF24;
+  }
+  .btn-copy.copied { background:linear-gradient(135deg,#16a34a,#15803d); color:#fff; border-color:transparent; }
+  .btn-celebrate {
+    background:linear-gradient(135deg,#F97316,#EA580C);
+    border:none; color:#fff;
+  }
+  .watermark { text-align:right; margin-top:20px; }
+  .watermark span { color:rgba(249,115,22,0.18); font-size:9px; letter-spacing:0.12em; font-family:sans-serif; }
+  .bottom-rule { display:flex; align-items:center; gap:12px; margin-top:12px; }
+  .bottom-rule-l { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,0.3)); }
+  .bottom-rule-r { flex:1; height:1px; background:linear-gradient(90deg,rgba(249,115,22,0.3),transparent); }
+  .bottom-rule span { color:rgba(249,115,22,0.5); font-size:11px; letter-spacing:0.25em; text-transform:uppercase; white-space:nowrap; }
+  .spark {
+    position:fixed; top:50%; left:50%;
+    width:10px; height:10px; border-radius:50%;
+    pointer-events:none; z-index:50;
+    animation: burst 0.9s ease-out forwards;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="rule">
+    <div class="rule-line-l"></div>
+    <span style="font-size:24px">🔥</span>
+    <div class="rule-line-r"></div>
+  </div>
+  <div class="date">June 21, 2026</div>
+  <h1 class="gold">FATHER'S</h1>
+  <h1 class="white">DAY</h1>
+  <div class="divider"></div>
+  <div class="msg-box"><p id="msg"></p></div>
+  <div class="nav">
+    <button class="nav-btn" onclick="prev()">&#8249;</button>
+    <span class="nav-count" id="count"></span>
+    <button class="nav-btn" onclick="next()">&#8250;</button>
+  </div>
+  <div class="actions">
+    <button class="btn btn-copy" id="copyBtn" onclick="copyMsg()">COPY MESSAGE</button>
+    <button class="btn btn-celebrate" onclick="celebrate()">CELEBRATE</button>
+  </div>
+  <div class="watermark"><span>TD by GForUs</span></div>
+  <div class="bottom-rule">
+    <div class="bottom-rule-l"></div>
+    <span>For the ones who never quit</span>
+    <div class="bottom-rule-r"></div>
+  </div>
+</div>
+
+<script>
+const messages = [
+  "Happy Father's Day to the men who showed up, worked hard, and never made it look easy. Here's to you. 🥃",
+  "To the dads, granddads, stepdads, and every man who stepped up — today is yours. Happy Father's Day. 💪",
+  "Behind every great family is a man who put in the work. Happy Father's Day, brother. 🔥",
+  "Real strength isn't what you lift — it's what you carry for your family. Happy Father's Day. 🏔️",
+  "No manual, no breaks, no quit. That's a dad. Happy Father's Day to the ones who never tapped out. ⚒️"
+];
+let idx = 0;
+function render() {
+  document.getElementById('msg').textContent = messages[idx];
+  document.getElementById('count').textContent = (idx+1) + ' / ' + messages.length;
+}
+function next() { idx = (idx+1) % messages.length; render(); }
+function prev() { idx = (idx-1+messages.length) % messages.length; render(); }
+function copyMsg() {
+  navigator.clipboard.writeText(messages[idx]).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ COPIED'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPY MESSAGE'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function celebrate() {
+  const colors = ['#F97316','#FBBF24','#EF4444','#FCD34D'];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    s.style.background = colors[i%4];
+    s.style.setProperty('--a', (i*20)+'deg');
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 950);
+  }
+}
+// Embers
+for (let i = 0; i < 30; i++) {
+  const e = document.createElement('div');
+  e.className = 'ember';
+  const size = 2 + Math.random()*4;
+  e.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;bottom:-10px;animation-duration:${3+Math.random()*3}s;animation-delay:${Math.random()*4}s;`;
+  document.body.appendChild(e);
+}
+render();
+</script>
+</body>
 </html>
